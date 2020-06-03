@@ -2,22 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Bracket = ({ bracket }) => {
+const Bracket = ({ first, second, round }) => {
   return (
     <Container>
-      <Match>12</Match>
+      <Match>{round}</Match>
       <Details>
         <Item>
-          <Label isWinner={bracket.first.score > bracket.second.score}>
-            {bracket.first.label}
-          </Label>
-          <Score>{bracket.first.score}</Score>
+          <Label isWinner={first.score > second.score}>{first.label}</Label>
+          <Score>{first.score}</Score>
         </Item>
         <Item style={{ borderBottom: '0px' }}>
-          <Label isWinner={bracket.second.score > bracket.first.score}>
-            {bracket.second.label}
-          </Label>
-          <Score>{bracket.second.score}</Score>
+          <Label isWinner={second.score > first.score}>{second.label}</Label>
+          <Score>{second.score}</Score>
         </Item>
       </Details>
     </Container>
@@ -25,12 +21,15 @@ const Bracket = ({ bracket }) => {
 }
 
 Bracket.propTypes = {
-  bracket: PropTypes.shape({
-    first: PropTypes.object,
-    firstScore: PropTypes.string,
-    second: PropTypes.object,
-    secondScore: PropTypes.string
-  }).isRequired
+  first: PropTypes.shape({
+    label: PropTypes.object,
+    score: PropTypes.string
+  }).isRequired,
+  second: PropTypes.shape({
+    label: PropTypes.object,
+    score: PropTypes.string
+  }).isRequired,
+  round: PropTypes.number.isRequired
 }
 
 export default Bracket

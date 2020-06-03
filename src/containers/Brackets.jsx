@@ -9,7 +9,7 @@ function filterWinners(array) {
   )
 }
 
-function displayWinners(array) {
+function displayMatches(array) {
   return array.map((match) =>
     match.reduce((a, b) => {
       if (Object.keys(a).length > 0) {
@@ -29,23 +29,23 @@ const mappedCompetitors = competitors.map((c) => ({
 }))
 
 const first = matches[0].map((match) => match.map((c) => mappedCompetitors[c]))
-const displayFirst = displayWinners(first)
+const displayFirst = first
 const firstWinners = filterWinners(first)
 
 const second = matches[1].map((match) => match.map((c) => firstWinners[c]))
-const displaySecond = displayWinners(second)
+const displaySecond = second
 const secondWinners = filterWinners(second)
 
 const third = matches[2].map((match) => match.map((c) => secondWinners[c]))
-const displayThird = displayWinners(third)
+const displayThird = third
 const thirdWinners = filterWinners(third)
 
 const fourth = matches[3].map((match) => match.map((c) => thirdWinners[c]))
-const displayFourth = displayWinners(fourth)
+const displayFourth = fourth
 const fourthWinners = filterWinners(fourth)
 
 const fifth = matches[4].map((match) => match.map((c) => fourthWinners[c]))
-const displayFifth = displayWinners(fifth)
+const displayFifth = fifth
 
 const Brackets = () => {
   return (
@@ -66,7 +66,7 @@ const Brackets = () => {
         }}
       >
         {displayFirst.map((b, index) => (
-          <Bracket key={index} bracket={b} />
+          <Bracket key={index} first={b[0]} second={b[1]} round={12} />
         ))}
       </div>
 
@@ -79,7 +79,7 @@ const Brackets = () => {
         }}
       >
         {displaySecond.map((b, index) => (
-          <Bracket key={index} bracket={b} />
+          <Bracket key={index} first={b[0]} second={b[1]} round={12} />
         ))}
       </div>
 
@@ -92,7 +92,7 @@ const Brackets = () => {
         }}
       >
         {displayThird.map((b, index) => (
-          <Bracket key={index} bracket={b} />
+          <Bracket key={index} first={b[0]} second={b[1]} round={12} />
         ))}
       </div>
 
@@ -105,7 +105,7 @@ const Brackets = () => {
         }}
       >
         {displayFourth.map((b, index) => (
-          <Bracket key={index} bracket={b} />
+          <Bracket key={index} first={b[0]} second={b[1]} round={12} />
         ))}
       </div>
 
@@ -118,7 +118,7 @@ const Brackets = () => {
         }}
       >
         {displayFifth.map((b, index) => (
-          <Bracket key={index} bracket={b} />
+          <Bracket key={index} first={b[0]} second={b[1]} round={12} />
         ))}
       </div>
     </div>
